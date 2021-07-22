@@ -17,7 +17,7 @@ const App = (props: AppProps) => {
 					<Route exact path="/add">
 						<AddForm></AddForm>
 					</Route>
-					<Route exact path="/admin">
+					<Route exact path="/admin/:id">
 						<EditForm></EditForm>
 					</Route>
 				</Switch>

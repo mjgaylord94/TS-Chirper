@@ -1,10 +1,11 @@
 import React from 'react';
 import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import Header from './Header';
 
-const AddForm = (props) => {
-    let chirpIDCounter = 4
+const AddForm = () => {
+    const history = useHistory();
     const [user, setUser] = useState('');
     const [chirpText, setChirpText] = useState('');
 
@@ -14,12 +15,14 @@ const AddForm = (props) => {
             image: "https://merriam-webster.com/assets/mw/images/article/art-wap-article-main/egg-3442-e1f6463624338504cd021bf23aef8441@1x.jpg",
             username: user,
             chirpText: chirpText,
-            chirpID: chirpIDCounter
         }
 
-        setUser(``)
-        setChirpText(``)
-        chirpIDCounter += 1
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", '/api/chirps', true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(JSON.stringify(newChirp))
+
+        history.goBack();
     }
 
     return (
@@ -27,7 +30,7 @@ const AddForm = (props) => {
             <div>
                 <Header></Header>
                 <div className="row d-flex justify-content-center">
-                    <div className="col-md-4">
+                    <div className="col-md-8">
                         <div id="form-container">
                             <form id="chirp-form" action="">
                                 <h3 id="form-title">

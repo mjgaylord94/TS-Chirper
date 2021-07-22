@@ -10,7 +10,8 @@ const Chirp = (props) => {
                     alt="egg" width="75px" height="75px"/>
                 <h3>@{props.chirp.username}</h3>
                 <h6>{props.chirp.chirpText}</h6>
-                <Link to={`/admin/`} id="edit-button" className="btn btn-secondary">Edit</Link>
+                <br />
+                <Link to={`/admin/${props.chirp.id}`} id="edit-button" className="btn btn-secondary">Edit</Link>
             </div>
         </>
     );

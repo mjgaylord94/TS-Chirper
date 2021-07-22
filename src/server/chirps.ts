@@ -3,14 +3,20 @@ import chirpsStore from "./chirpstore"
 
 let router = express.Router();
 
-router.get('/', (req, res) => {
-    const chirps = chirpsStore.GetChirps()
-    let chirpArr: any[] = []
+router.get('/:id?', (req, res) => {
+    let id = req.params.id
+    if (id) {
+        res.json(chirpsStore.GetChirp(id));
+    } else {
+        const chirps = chirpsStore.GetChirps()
+        let chirpArr: any[] = []
 
-    Object.keys(chirps).map(key => chirpArr.push({id: key, name: chirps[key].name, msg: chirps[key].msg}))
+        Object.keys(chirps).map(key => chirpArr.push({ id: key, image: chirps[key].image, username: chirps[key].username, chirpText: chirps[key].chirpText }))
 
-    chirpArr.pop()
+        chirpArr.pop()
+        res.send(chirpArr);
     }
+}
 );
 
 router.post('/', (req, res) => {
