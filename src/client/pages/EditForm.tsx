@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 
-import Header from './Header';
+import Header from '../components/Header';
 
 const EditForm = () => {
     const history = useHistory();
@@ -22,7 +22,7 @@ const EditForm = () => {
 
     async function submit(e: { preventDefault: () => void; }) {
         e.preventDefault();
-        let newChirp = {
+        let newChirp: {image: string, username: string, chirpText: string} = {
             image: image,
             username: user,
             chirpText: chirpText,
@@ -59,8 +59,8 @@ const EditForm = () => {
                                 <h3 id="form-title">
                                     Edit Chirp
                                 </h3>
-                                <input id="username-input" value={user} placeholder="Username" onChange={e => { setUser(e.target.value) }} />
-                                <textarea id="chirp-textarea" value={chirpText} placeholder="What's on your mind?" rows={5} onChange={e => { setChirpText(e.target.value) }}></textarea>
+                                <input id="username-input" value={user} onChange={e => { setUser(e.target.value) }} />
+                                <textarea id="chirp-textarea" value={chirpText} rows={5} onChange={e => { setChirpText(e.target.value) }}></textarea>
                                 <button id="delete-button" className="btn btn-danger m-2" onClick={remove}>
                                     Delete Chirp
                                 </button>

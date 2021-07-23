@@ -1,26 +1,19 @@
 import React, { useState, useEffect } from 'react';
 
-import Chirp from './Chirp'
-import Header from './Header'
+import Chirp from '../components/Chirp'
+import Header from '../components/Header'
 
-export interface ChirpState {
-    id: string,
-    image: string,
-    username: string,
-    chirpText: string
-}
-
-const Home = () => {
+const Home: React.FC<IHome> = () => {
     const [chirps, setChirps] = useState<ChirpState[]>([]);
-
+    
     const getChirps = async () => {
         let r = await fetch('/api/chirps');
         let chirps = await r.json();
         setChirps(chirps);
     }
-
+    
     useEffect(() => {getChirps();}, [])
-
+    
     return (
         <div>
             <Header></Header>
@@ -34,5 +27,14 @@ const Home = () => {
         </div>
     );
 };
+
+interface IHome {}
+
+export interface ChirpState {
+    id: string,
+    image: string,
+    username: string,
+    chirpText: string
+}
 
 export default Home;

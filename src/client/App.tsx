@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-import Home from './components/Home';
-import AddForm from './components/AddForm';
-import EditForm from './components/EditForm';
+import Home from './pages/Home';
+import AddForm from './pages/AddForm';
+import EditForm from './pages/EditForm';
 
 /* HOOK REACT EXAMPLE */
 const App = (props: AppProps) => {
@@ -17,7 +17,7 @@ const App = (props: AppProps) => {
 					<Route exact path="/add">
 						<AddForm></AddForm>
 					</Route>
-					<Route exact path="/admin/:id">
+					<Route exact path="/edit/:id">
 						<EditForm></EditForm>
 					</Route>
 				</Switch>

@@ -2,16 +2,16 @@ import React from 'react';
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import Header from './Header';
+import Header from '../components/Header';
 
 const AddForm = () => {
     const history = useHistory();
     const [user, setUser] = useState('');
     const [chirpText, setChirpText] = useState('');
 
-    function submit(e) {
+    function submit(e: { preventDefault: () => void; }) {
         e.preventDefault();
-        let newChirp = {
+        let newChirp: {image: string, username: string, chirpText: string} = {
             image: "https://merriam-webster.com/assets/mw/images/article/art-wap-article-main/egg-3442-e1f6463624338504cd021bf23aef8441@1x.jpg",
             username: user,
             chirpText: chirpText,
